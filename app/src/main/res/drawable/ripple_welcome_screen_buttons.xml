@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="21"
+    android:color="#283593">
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners android:radius="25dp"/>
+            <solid android:color="#283593"/>
+            <stroke android:width="2dp" android:color="#283593"/>
+        </shape>
+    </item>
+    <item
+        android:id="@android:id/background"
+        android:drawable="@drawable/welcome_screen_buttons"/>
+</ripple>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Automated Attendance System (Faculty)</string>
+    <string name="welcome">Welcome!</string>
+    <string name="facultyLogin">Log In</string>
+    <string name="facultyName" />
+    <string name="reminder">Make sure the phones are in contact</string>
+    <string name="currentDate" />
+    <string name="courseButton1">CSE 101</string>
+    <string name="courseButton2">CSE 102</string>
+    <string name="courseButton3">CSE 103</string>
+    <string name="courseButton4">CSE 104</string>
+    <string name="successText">Successful!</string>
+    <string name="statusText"><u>Status:</u> Present</string>
+    <string name="studentId"><u>Student ID:</u> </string>
+</resources>

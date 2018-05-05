@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="#e57373"
+    tools:targetApi="21">
+
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners android:bottomLeftRadius="25dp"
+                android:bottomRightRadius="25dp"
+                android:topLeftRadius="25dp"
+                android:topRightRadius="25dp"/>
+            <solid android:color="#283593"/>
+            <stroke android:color="#283593"
+                android:width="2dp"/>
+
+        </shape>
+    </item>
+
+    <item
+        android:id="@android:id/background"
+        android:drawable="@drawable/courses_buttons"/>
+
+
+</ripple>

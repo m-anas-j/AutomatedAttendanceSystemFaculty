@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WelcomeScreen">
+
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textColor="#283593"
+        android:fontFamily="@font/product_sans_regular"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="@string/welcome" />
+
+    <Button
+        android:id="@+id/facultyLogin"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="130dp"
+        android:background="@drawable/ripple_welcome_screen_buttons"
+        android:fontFamily="@font/product_sans_regular"
+        android:onClick="loginButtonClicked"
+        android:text="@string/facultyLogin" />
+
+    <EditText
+        android:id="@+id/facultyID"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/welcome"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="193dp"
+        android:ems="10"
+        android:fontFamily="@font/product_sans_regular"
+
+        android:hint="Enter your user id"
+        android:inputType="textPersonName"
+        android:text="@string/facultyName" />
+
+    <EditText
+        android:id="@+id/facultyPassword"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/facultyID"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:fontFamily="@font/product_sans_regular"
+
+        android:hint="Enter your password"
+        android:inputType="textPassword" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/welcome"
+        android:layout_alignTop="@+id/facultyID"
+        app:srcCompat="@drawable/user_id" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/welcome"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/password" />
+
+</RelativeLayout>
