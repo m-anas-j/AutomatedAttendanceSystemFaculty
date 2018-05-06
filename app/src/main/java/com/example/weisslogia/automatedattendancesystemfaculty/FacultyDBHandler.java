@@ -157,7 +157,7 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery(query, null);
 
         String facultyUsername, facultyPassword;
-        facultyPassword = "NOT FOUND";
+        facultyPassword = "PASSWORD NOT FOUND";
         if(cursor.moveToFirst()){
             do{
                 facultyUsername = cursor.getString(0);
