@@ -19,8 +19,9 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\Weisslogia\Desktop\Icons\nfc_icon_1.png" />
-                                      <entry key="outputName" value="nfc_icon_1" />
+                                      <entry key="imageAsset" value="C:\Users\Weisslogia\Desktop\Icons\confirm_password_icon_1.png" />
+                                      <entry key="outputName" value="confirm_password_icon_1" />
+                                      <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="283593" />
                                     </map>
                                   </option>
@@ -47,7 +48,6 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="iconShape" value="NONE" />
                                       <entry key="imageAsset" value="C:\Users\Weisslogia\Desktop\Icons\nfc_icon_1.png" />
                                       <entry key="outputName" value="nfc_icon_1" />
                                     </map>
@@ -59,7 +59,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

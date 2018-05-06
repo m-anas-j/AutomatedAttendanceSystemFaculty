@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        tools:context=".FacultySignupActivity">
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="92dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/ripple_welcome_screen_buttons"
+            android:fontFamily="@font/product_sans_regular"
+            android:onClick="registerButtonClicked"
+            android:text="@string/registerButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectCoursesButton" />
+
+        <Button
+            android:id="@+id/selectCoursesButton"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="92dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/ripple_welcome_screen_buttons"
+            android:fontFamily="@font/product_sans_regular"
+            android:text="@string/selectCoursesButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirmPassWordText" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/confirmPassWordText"
+            app:layout_constraintTop_toBottomOf="@+id/imageView10"
+            app:srcCompat="@drawable/confirm_password_icon_1" />
+
+        <EditText
+            android:id="@+id/confirmPassWordText"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="67dp"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:fontFamily="@font/product_sans_regular"
+            android:hint="@string/confirmPassWordTextHint"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passWordText" />
+
+        <EditText
+            android:id="@+id/fullNameText"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="67dp"
+            android:layout_marginTop="22dp"
+            android:ems="10"
+            android:fontFamily="@font/product_sans_regular"
+            android:hint="@string/fullNameTextHint"
+            android:inputType="textPersonName"
+            android:text="@string/fullNameText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        <EditText
+            android:id="@+id/userNameText"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="67dp"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:fontFamily="@font/product_sans_regular"
+            android:hint="@string/userNameTextHint"
+            android:inputType="textPersonName"
+            android:text="@string/userNameText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullNameText" />
+
+        <EditText
+            android:id="@+id/userIdText"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="67dp"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:fontFamily="@font/product_sans_regular"
+            android:hint="@string/userIdTextHint"
+            android:inputType="number"
+            android:text="@string/userIdText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userNameText" />
+
+        <EditText
+            android:id="@+id/passWordText"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="67dp"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:fontFamily="@font/product_sans_regular"
+            android:hint="@string/passWordTextHint"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userIdText" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="200dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="92dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/signup_icon_1" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="22dp"
+            app:layout_constraintEnd_toStartOf="@+id/fullNameText"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6"
+            app:srcCompat="@drawable/fullname_icon_1" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/userNameText"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7"
+            app:srcCompat="@drawable/username_icon_1" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/userIdText"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8"
+            app:srcCompat="@drawable/user_id_icon_1" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/passWordText"
+            app:layout_constraintTop_toBottomOf="@+id/userIdText"
+            app:srcCompat="@drawable/password_icon_1" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    </ScrollView>

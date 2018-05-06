@@ -7,13 +7,15 @@ public class Faculty {
     private String facultyPassword;
     private String facultyUsername;
 
-    public void Faculty()
+    public Faculty()
     {
 
     }
 
-    public void Faculty(int _facultyId, String _facultyPassword)
+    public Faculty(String _facultyName, String _facultyUsername, int _facultyId, String _facultyPassword)
     {
+        this.facultyName = _facultyName;
+        this.facultyUsername = _facultyUsername;
         this.facultyId = _facultyId;
         this.facultyPassword = _facultyPassword;
     }

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SuccessScreen extends AppCompatActivity {
+public class SuccessScreenActivity extends AppCompatActivity {
 
     private String receivedID;
     TextView statusText, studentId;

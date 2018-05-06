@@ -6,14 +6,10 @@ import android.content.Intent;
 import android.os.Parcelable;
 
 //packages needed for receiving data via nfc
-import android.app.Activity;
 import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class ReceivingStudentID extends AppCompatActivity {
+public class ReceivingStudentIDActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +28,7 @@ public class ReceivingStudentID extends AppCompatActivity {
             NdefMessage message = (NdefMessage) rawMessages[0]; // only one message transferred
             String receivedID = "";
             receivedID = receivedID + new String(message.getRecords()[0].getPayload()) + " ";
-            Intent i2 = new Intent(this, SuccessScreen.class);
+            Intent i2 = new Intent(this, SuccessScreenActivity.class);
             i2.putExtra("receivedData",receivedID);
             startActivity(i2);
             /*TextView reminder = (TextView)findViewById(R.id.reminder);

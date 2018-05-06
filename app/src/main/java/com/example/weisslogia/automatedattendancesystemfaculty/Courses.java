@@ -27,7 +27,7 @@ public class Courses extends AppCompatActivity {
 
     public void onCoursesButtonClicked(View view)
     {
-        Intent i = new Intent(this,ReceivingStudentID.class);
+        Intent i = new Intent(this,ReceivingStudentIDActivity.class);
         startActivity(i);
     }
 

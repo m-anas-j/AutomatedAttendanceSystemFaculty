@@ -7,13 +7,10 @@ import android.view.View;
 
 //packages required for running nfc
 
-import android.app.Activity;
-import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.widget.Toast;
 
-public class WelcomeScreen extends AppCompatActivity {
+public class WelcomeScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +36,18 @@ public class WelcomeScreen extends AppCompatActivity {
     public void loginButtonClicked(View view)
     {
         Intent i = new Intent(this, Courses.class);
+        startActivity(i);
+    }
+
+    public void signupButtonClicked(View view)
+    {
+        Intent i = new Intent(this,FacultySignupActivity.class);
+        startActivity(i);
+    }
+
+    public void adminModeClicked(View view)
+    {
+        Intent i = new Intent(this,ViewFacultyDatabase.class);
         startActivity(i);
     }
 }

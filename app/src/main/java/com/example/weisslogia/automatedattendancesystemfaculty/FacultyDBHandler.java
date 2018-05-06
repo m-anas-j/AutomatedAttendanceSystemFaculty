@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
+import android.view.View;
+import android.widget.Toast;
 
 public class FacultyDBHandler extends SQLiteOpenHelper{
 
@@ -15,21 +17,22 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
 
     //faculty table
     private static final String TABLE_FACULTY = "faculty";
-    private static final String FACULTY_COLUMN_1_ID = "_id";
+    private static final String FACULTY_COLUMN_1_ID = "faculty_id";
     private static final String FACULTY_COLUMN_2_NAME = "faculty_name";
-    private static final String FACULTY_COLUMN_3_PASSWORD = "faculty_password";
+    private static final String FACULTY_COLUMN_3_USERNAME = "faculty_username";
+    private static final String FACULTY_COLUMN_4_PASSWORD = "faculty_password";
     //student table
     private static final String TABLE_STUDENT = "student";
     private static final String STUDENT_COLUMN_1_ID = "_id";
     private static final String STUDENT_COLUMN_2_NAME = "student_name";
     private static final String STUDENT_COLUMN_3_PASSWORD = "student_password";
     //Attendance table
-    private static final String TABLE_ATTENDANCE = "attendance";
+    private static final String TABLE_ATTENDANCE = "attendanceYa";
     private static final String ATTENDANCE_COLUMN_1_ID = "_id";
     private static final String ATTENDANCE_COLUMN_2_DATE = "date";
     private static final String ATTENDANCE_COLUMN_3_STUDENT_ID = "student_id";
     private static final String ATTENDANCE_COLUMN_4_STATUS= "status";
-    private static final String ATTENDANCE_COLUMN_5_TOTALCLASSES = "total classes";
+    private static final String ATTENDANCE_COLUMN_5_TOTALCLASSES = "total_classes";
     private static final String ATTENDANCE_COLUMN_6_PERCENTAGE = "percentage";
     //Course info table
     private static final String TABLE_COURSEINFO = "attendance";
@@ -55,9 +58,10 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
 
         //create faculty table
         String createFacultyTable = "CREATE TABLE " + TABLE_FACULTY + "( " +
-                FACULTY_COLUMN_1_ID + " TEXT PRIMARY KEY, " +
-                FACULTY_COLUMN_2_NAME + " TEXT, " +
-                FACULTY_COLUMN_3_PASSWORD + " TEXT )"
+                FACULTY_COLUMN_1_ID + " INTEGER PRIMARY KEY NOT NULL, " +
+                FACULTY_COLUMN_2_NAME + " TEXT NOT NULL, " +
+                FACULTY_COLUMN_3_USERNAME + " TEXT NOT NULL, " +
+                FACULTY_COLUMN_4_PASSWORD + " TEXT NOT NULL)"
                 ;
         db.execSQL(createFacultyTable);
 
@@ -75,10 +79,14 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
                 ATTENDANCE_COLUMN_2_DATE + " TEXT, " +
                 ATTENDANCE_COLUMN_3_STUDENT_ID + " TEXT, " +
                 ATTENDANCE_COLUMN_4_STATUS + " INTEGER, " +
-                ATTENDANCE_COLUMN_5_TOTALCLASSES + "INTEGER, " +
-                ATTENDANCE_COLUMN_6_PERCENTAGE + " DECIMAL(10,5) )"
+                ATTENDANCE_COLUMN_5_TOTALCLASSES + " INTEGER, " +
+                ATTENDANCE_COLUMN_6_PERCENTAGE + " NUMERIC )"
                 ;
         db.execSQL(createAttendanceTable);
+
+        //add entries to course info table
+        ContentValues courseInfoValues = new ContentValues();
+
 
     }
 
@@ -91,6 +99,55 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ATTENDANCE);
         onCreate(db);
 
+    }
+
+    public void addNewFaculty(Faculty newFaculty)
+    {
+        String name, userName, passWord;
+        int id;
+        ContentValues newFacultyValues = new ContentValues();
+
+        id = newFaculty.getFacultyId();
+        name = newFaculty.getFacultyName();
+        userName = newFaculty.getFacultyUsername();
+        passWord = newFaculty.getFacultyPassword();
+
+        SQLiteDatabase db = getWritableDatabase();
+        newFacultyValues.put(FACULTY_COLUMN_1_ID,id);
+        newFacultyValues.put(FACULTY_COLUMN_2_NAME,name);
+        newFacultyValues.put(FACULTY_COLUMN_3_USERNAME,userName);
+        newFacultyValues.put(FACULTY_COLUMN_4_PASSWORD,passWord);
+        db.insert(TABLE_FACULTY,null,newFacultyValues);
+        sortFacultyTable();
+    }
+
+    public void sortFacultyTable()
+    {
+        //sort the table every time a new entry is added
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("CREATE TABLE ORDERED_FACULTY_TABLE AS SELECT * FROM " + TABLE_FACULTY + " ORDER BY " + FACULTY_COLUMN_1_ID + " ASC");
+        db.execSQL("DROP TABLE " + TABLE_FACULTY);
+        db.execSQL("ALTER TABLE ORDERED_FACULTY_TABLE RENAME TO " + TABLE_FACULTY);
+    }
+
+    public String getNewlyCreatedFacultyInfo(int newFacultyId)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String nameQuery = "SELECT *" + " FROM " + TABLE_FACULTY + " WHERE " + FACULTY_COLUMN_1_ID + " IS " + newFacultyId;
+        //String nameQuery = "SELECT *" + " FROM " + TABLE_FACULTY;
+        Cursor yay = db.rawQuery(nameQuery,null);
+        yay.moveToFirst();
+        String name = yay.getString(yay.getColumnIndex(FACULTY_COLUMN_2_NAME));
+        return name;
+    }
+
+    public Cursor viewAllFaculty()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_FACULTY;
+        Cursor ret = db.rawQuery(query, null);
+        ret.moveToFirst();
+        return ret;
     }
 
 

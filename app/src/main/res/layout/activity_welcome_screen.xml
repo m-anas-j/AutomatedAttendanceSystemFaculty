@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WelcomeScreen">
+    tools:context=".WelcomeScreenActivity">
 
-
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:textColor="#283593"
-        android:fontFamily="@font/product_sans_regular"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:text="@string/welcome" />
 
     <Button
         android:id="@+id/facultyLogin"
@@ -26,25 +13,32 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="130dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/ripple_welcome_screen_buttons"
         android:fontFamily="@font/product_sans_regular"
         android:onClick="loginButtonClicked"
-        android:text="@string/facultyLogin" />
+        android:text="@string/facultyLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facultyPassword" />
 
     <EditText
         android:id="@+id/facultyID"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_alignEnd="@+id/welcome"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="193dp"
+        android:layout_marginEnd="67dp"
+
+        android:layout_marginTop="221dp"
         android:ems="10"
         android:fontFamily="@font/product_sans_regular"
-
         android:hint="Enter your user id"
         android:inputType="textPersonName"
-        android:text="@string/facultyName" />
+        android:text="@string/facultyName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/facultyPassword"
@@ -52,26 +46,77 @@
         android:layout_height="50dp"
         android:layout_alignStart="@+id/facultyID"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="67dp"
+        android:layout_marginTop="30dp"
+
         android:ems="10"
         android:fontFamily="@font/product_sans_regular"
-
         android:hint="Enter your password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facultyID" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignStart="@+id/welcome"
         android:layout_alignTop="@+id/facultyID"
+        android:layout_marginTop="221dp"
+        app:layout_constraintEnd_toStartOf="@+id/facultyID"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/user_id" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignStart="@+id/welcome"
         android:layout_centerVertical="true"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/facultyPassword"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:srcCompat="@drawable/password" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/facultySignup"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ripple_welcome_screen_buttons"
+        android:fontFamily="@font/product_sans_regular"
+        android:onClick="signupButtonClicked"
+        android:text="@string/facultySignup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facultyLogin" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="200dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/faculty_icon_3" />
+
+    <TextView
+        android:id="@+id/adminMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:fontFamily="@font/product_sans_regular"
+        android:textColor="@color/colorMyShadeOfBlue"
+        android:onClick="adminModeClicked"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/adminMode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facultySignup" />
+
+</android.support.constraint.ConstraintLayout>

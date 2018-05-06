@@ -12,4 +12,41 @@
     <string name="successText">Successful!</string>
     <string name="statusText"><u>Status:</u> Present</string>
     <string name="studentId"><u>Student ID:</u> </string>
+    <string name="facultySignup">Sign Up</string>
+    <string name="userIdText" />
+    <string name="userNameText" />
+    <string name="fullNameText" />
+    <string name="fullNameTextHint">Your full name</string>
+    <string name="userNameTextHint">Your username</string>
+    <string name="userIdTextHint">Your user id</string>
+    <string name="passWordTextHint">Your password</string>
+    <string name="confirmPassWordTextHint">Confirm password</string>
+    <string name="registerButton">Register</string>
+    <string name="adminMode">Admin?</string>
+    <string name="selectCoursesButton">Select Courses</string>
+    <string-array name="available_courses">
+        <item>CSE 4501</item>
+        <item>CSE 4503</item>
+        <item>CSE 4511</item>
+        <item>CSE 4513</item>
+        <item>CSE 4502</item>
+        <item>CSE 4504</item>
+        <item>CSE 4508</item>
+        <item>CSE 4510</item>
+        <item>CSE 4512</item>
+        <item>CSE 4590</item>
+        <item>CSE 4541</item>
+        <item>CSE 4531</item>
+        <item>CSE 4537</item>
+        <item>CSE 4547</item>
+        <item>CSE 4543</item>
+        <item>CSE 4539</item>
+        <item>CSE 4549</item>
+        <item>CSE 4551</item>
+        <item>CSE 4540</item>
+        <item>CSE 4544</item>
+        <item>CSE 4550</item>
+        <item>CSE 4552</item>
+    </string-array>
+
 </resources>

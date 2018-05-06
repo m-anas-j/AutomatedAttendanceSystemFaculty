@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeScreen">
+        <activity android:name=".WelcomeScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Courses" />
-        <activity android:name=".ReceivingStudentID">
+        <activity android:name=".ReceivingStudentIDActivity">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
@@ -36,7 +36,9 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name=".SuccessScreen"></activity>
+        <activity android:name=".SuccessScreenActivity" />
+        <activity android:name=".FacultySignupActivity" />
+        <activity android:name=".ViewFacultyDatabase"></activity>
     </application>
 
 </manifest>
