@@ -30,11 +30,10 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_marginEnd="67dp"
-
         android:layout_marginTop="221dp"
         android:ems="10"
         android:fontFamily="@font/product_sans_regular"
-        android:hint="Enter your user id"
+        android:hint="@string/user_id_editText"
         android:inputType="textPersonName"
         android:text="@string/facultyName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +50,7 @@
 
         android:ems="10"
         android:fontFamily="@font/product_sans_regular"
-        android:hint="Enter your password"
+        android:hint="@string/password_editText"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/facultyID" />

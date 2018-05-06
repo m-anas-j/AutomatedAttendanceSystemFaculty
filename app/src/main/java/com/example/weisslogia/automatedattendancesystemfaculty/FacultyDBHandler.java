@@ -151,4 +151,24 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
     }
 
 
+    public String searchPassword(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT faculty_username, faculty_password FROM " + TABLE_FACULTY;
+        Cursor cursor = db.rawQuery(query, null);
+
+        String facultyUsername, facultyPassword;
+        facultyPassword = "NOT FOUND";
+        if(cursor.moveToFirst()){
+            do{
+                facultyUsername = cursor.getString(0);
+                facultyPassword = cursor.getString(1);
+
+                if(facultyUsername.equals(username)){
+                    facultyPassword = cursor.getString(1);
+                    break;
+                }
+            }while (cursor.moveToNext());
+        }
+        return facultyPassword;
+    }
 }

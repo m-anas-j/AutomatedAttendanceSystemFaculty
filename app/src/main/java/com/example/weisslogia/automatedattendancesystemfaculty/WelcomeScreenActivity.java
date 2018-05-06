@@ -8,9 +8,12 @@ import android.view.View;
 //packages required for running nfc
 
 import android.nfc.NfcAdapter;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class WelcomeScreenActivity extends AppCompatActivity {
+
+    FacultyDBHandler facultyDBHandler = new FacultyDBHandler(this, null, null,1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +38,32 @@ public class WelcomeScreenActivity extends AppCompatActivity {
 
     public void loginButtonClicked(View view)
     {
-        Intent i = new Intent(this, Courses.class);
-        startActivity(i);
+        EditText facultyIdEditText = (EditText) findViewById(R.id.facultyID);
+        String facultyId = facultyIdEditText.getText().toString();
+
+        EditText facultyPasswordEditText = (EditText) findViewById(R.id.facultyPassword);
+        String facultyPassword = facultyPasswordEditText.getText().toString();
+
+        String password = facultyDBHandler.searchPassword(facultyId);
+
+        if(facultyPassword.equals(password)) {
+            Intent facultyLoginIntent = new Intent(this, Courses.class);
+            startActivity(facultyLoginIntent);
+        }
+        else {
+            Toast.makeText(WelcomeScreenActivity.this, "Wrong Credentials!", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void signupButtonClicked(View view)
     {
-        Intent i = new Intent(this,FacultySignupActivity.class);
-        startActivity(i);
+        Intent signupIntent = new Intent(this,FacultySignupActivity.class);
+        startActivity(signupIntent);
     }
 
     public void adminModeClicked(View view)
     {
-        Intent i = new Intent(this,ViewFacultyDatabase.class);
-        startActivity(i);
+        Intent adminLoginIntent = new Intent(this,ViewFacultyDatabase.class);
+        startActivity(adminLoginIntent);
     }
 }

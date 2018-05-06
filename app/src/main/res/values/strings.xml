@@ -24,6 +24,8 @@
     <string name="registerButton">Register</string>
     <string name="adminMode">Admin?</string>
     <string name="selectCoursesButton">Select Courses</string>
+    <string name="user_id_editText">Enter your user id</string>
+    <string name="password_editText">Enter your password</string>
     <string-array name="available_courses">
         <item>CSE 4501</item>
         <item>CSE 4503</item>
