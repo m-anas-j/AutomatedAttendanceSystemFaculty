@@ -23,6 +23,7 @@ public class FacultySignupActivity extends AppCompatActivity {
     private EditText passWordText;
     private Faculty newFaculty;
     private FacultyDBHandler facultyDBHandler;
+    private ArrayList<String> coursesSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,9 @@ public class FacultySignupActivity extends AppCompatActivity {
         newFaculty = new Faculty(fullname,username,userid,password);
 
         facultyDBHandler.addNewFaculty(newFaculty);
+
+        facultyDBHandler.addNewCourse(coursesSelected, userid);
+
         String name = facultyDBHandler.getNewlyCreatedFacultyInfo(newFaculty.getFacultyId());
         Toast.makeText(this,"Successfully added new faculty "+name,Toast.LENGTH_SHORT).show();
     }
@@ -93,13 +97,13 @@ public class FacultySignupActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String course = "";
-                ArrayList<String> coursesSelected = new ArrayList<>();
+                coursesSelected = new ArrayList<>();
                 for (int i=0;i<userItems.size();i++)
                 {
                     course = listItems[userItems.get(i)];
                     coursesSelected.add(course);
                 }
-                testText.setText(course);
+                testText.setText(coursesSelected.get(0));
             }
         });
 

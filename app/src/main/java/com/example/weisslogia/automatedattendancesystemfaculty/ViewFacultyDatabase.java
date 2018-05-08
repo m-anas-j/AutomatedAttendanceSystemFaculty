@@ -26,11 +26,22 @@ public class ViewFacultyDatabase extends AppCompatActivity {
         while(!ret.isAfterLast())
         {
             faculty="";
-            if (ret.getString(ret.getColumnIndex("faculty_name")) != null) {
+            /*if (ret.getString(ret.getColumnIndex("faculty_name")) != null) {
                 faculty += ret.getString(ret.getColumnIndex("faculty_id"));
                 faculty += " ";
                 faculty += ret.getString(ret.getColumnIndex("faculty_name"));
+                faculty += " ";
+                faculty += ret.getString(ret.getColumnIndex("faculty_password"));
+            }*/
+
+            if (ret.getString(ret.getColumnIndex("_id")) != null) {
+                faculty += ret.getString(ret.getColumnIndex("_id"));
+                faculty += " ";
+                faculty += ret.getString(ret.getColumnIndex("course_name"));
+                faculty += " ";
+                faculty += ret.getString(ret.getColumnIndex("faculty_id"));
             }
+
             faculties.add(faculty);
             ret.moveToNext();
         }

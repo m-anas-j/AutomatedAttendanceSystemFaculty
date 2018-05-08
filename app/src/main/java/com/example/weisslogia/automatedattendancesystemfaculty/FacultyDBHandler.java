@@ -9,6 +9,8 @@ import android.content.ContentValues;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class FacultyDBHandler extends SQLiteOpenHelper{
 
 
@@ -27,7 +29,7 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
     private static final String STUDENT_COLUMN_2_NAME = "student_name";
     private static final String STUDENT_COLUMN_3_PASSWORD = "student_password";
     //Attendance table
-    private static final String TABLE_ATTENDANCE = "attendanceYa";
+    private static final String TABLE_ATTENDANCE = "attendance";
     private static final String ATTENDANCE_COLUMN_1_ID = "_id";
     private static final String ATTENDANCE_COLUMN_2_DATE = "date";
     private static final String ATTENDANCE_COLUMN_3_STUDENT_ID = "student_id";
@@ -35,10 +37,11 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
     private static final String ATTENDANCE_COLUMN_5_TOTALCLASSES = "total_classes";
     private static final String ATTENDANCE_COLUMN_6_PERCENTAGE = "percentage";
     //Course info table
-    private static final String TABLE_COURSEINFO = "attendance";
+    private static final String TABLE_COURSEINFO = "course_info";
     private static final String COURSEINFO_COLUMN_1_ID = "_id";
     private static final String COURSEINFO_COLUMN_2_NAME = "course_name";
     private static final String COURSEINFO_COLUMN_3_FACULTY_ID = "faculty_id";
+    private static boolean createdCourseInfoTable = false;
 
 
     public FacultyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -69,9 +72,9 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
         String createCourseInfoTable = "CREATE TABLE " + TABLE_COURSEINFO + "( " +
                 COURSEINFO_COLUMN_1_ID + " TEXT PRIMARY KEY, " +
                 COURSEINFO_COLUMN_2_NAME + " TEXT, " +
-                COURSEINFO_COLUMN_3_FACULTY_ID + " TEXT )"
+                COURSEINFO_COLUMN_3_FACULTY_ID + " NUMERIC )"
                 ;
-        db.execSQL(createCourseInfoTable);
+        //db.execSQL(createCourseInfoTable);
 
         //create attendance table
         String createAttendanceTable = "CREATE TABLE " + TABLE_ATTENDANCE + "( " +
@@ -144,11 +147,45 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
     public Cursor viewAllFaculty()
     {
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_FACULTY;
+        String query = "SELECT * FROM " + TABLE_COURSEINFO;
         Cursor ret = db.rawQuery(query, null);
         ret.moveToFirst();
         return ret;
     }
+
+    public void addNewCourse(ArrayList<String> coursesSelected, int facultyId)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+
+        if (createdCourseInfoTable==false)
+        {
+            String createCourseInfoTable = "CREATE TABLE " + TABLE_COURSEINFO + "( " +
+                    COURSEINFO_COLUMN_1_ID + " TEXT PRIMARY KEY, " +
+                    COURSEINFO_COLUMN_2_NAME + " TEXT, " +
+                    COURSEINFO_COLUMN_3_FACULTY_ID + " NUMERIC )"
+                    ;
+            db.execSQL(createCourseInfoTable);
+            createdCourseInfoTable=true;
+        }
+
+        for (int i=0; i<coursesSelected.size(); i++)
+        {
+            String name = coursesSelected.get(i);
+            String id = coursesSelected.get(i);
+
+            ContentValues newCourseValues = new ContentValues();
+            newCourseValues.put(COURSEINFO_COLUMN_1_ID, id);
+            newCourseValues.put(COURSEINFO_COLUMN_2_NAME, name);
+            newCourseValues.put(COURSEINFO_COLUMN_3_FACULTY_ID, facultyId);
+            db.insert(TABLE_COURSEINFO, null, newCourseValues);
+        }
+
+
+        db.close();
+
+    }
+
+    
 
 
     public String searchPassword(String username) {
