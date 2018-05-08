@@ -150,7 +150,7 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
     public Cursor viewAllFaculty()
     {
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_COURSEINFO;
+        String query = "SELECT * FROM " + TABLE_FACULTY;
         Cursor ret = db.rawQuery(query, null);
         ret.moveToFirst();
         return ret;
@@ -199,6 +199,15 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
 
         db.close();
 
+    }
+
+    public Cursor viewAllCourse()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_COURSEINFO;
+        Cursor ret = db.rawQuery(query, null);
+        ret.moveToFirst();
+        return ret;
     }
 
     public Cursor getFacultysCourses(int loggedInFacultyId)
@@ -257,9 +266,30 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
         newAttendanceEntry.put(ATTENDANCE_COLUMN_1_ID, receivedCourseId);
         newAttendanceEntry.put(ATTENDANCE_COLUMN_2_DATE, receivedCurrentDate);
         newAttendanceEntry.put(ATTENDANCE_COLUMN_3_STUDENT_ID, receivedStudentId);
+        newAttendanceEntry.put(ATTENDANCE_COLUMN_4_STATUS,1);
         db.insert(TABLE_ATTENDANCE, null, newAttendanceEntry);
 
     }
-    
+
+    public Cursor viewAttendanceDatabase()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT " + ATTENDANCE_COLUMN_1_ID + ", " + ATTENDANCE_COLUMN_2_DATE + ", " + ATTENDANCE_COLUMN_3_STUDENT_ID + ", " + ATTENDANCE_COLUMN_4_STATUS + " FROM " + TABLE_ATTENDANCE;
+        Cursor ret = db.rawQuery(query,null);
+        ret.moveToFirst();
+        return ret;
+    }
+
+    public void clearAllDatabases()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        String deleteFromFaculty = "DELETE FROM " + TABLE_FACULTY;
+        String deleteFromCourseInfo = "DELETE FROM " + TABLE_COURSEINFO;
+        String deleteFromAttendance = "DELETE FROM " + TABLE_ATTENDANCE;
+
+        db.execSQL(deleteFromFaculty);
+        db.execSQL(deleteFromCourseInfo);
+        db.execSQL(deleteFromAttendance);
+    }
 
 }

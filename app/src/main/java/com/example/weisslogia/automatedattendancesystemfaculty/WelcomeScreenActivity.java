@@ -64,7 +64,7 @@ public class WelcomeScreenActivity extends AppCompatActivity {
 
     public void adminModeClicked(View view)
     {
-        Intent adminLoginIntent = new Intent(this,ViewFacultyDatabase.class);
+        Intent adminLoginIntent = new Intent(this,DisplayDatabasesActivity.class);
         startActivity(adminLoginIntent);
     }
 }

@@ -39,7 +39,8 @@
         <activity android:name=".SuccessScreenActivity" />
         <activity android:name=".FacultySignupActivity" />
         <activity android:name=".ViewFacultyDatabase" />
-        <activity android:name=".FacultyCourses"></activity>
+        <activity android:name=".FacultyCourses" />
+        <activity android:name=".DisplayDatabasesActivity"></activity>
     </application>
 
 </manifest>

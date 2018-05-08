@@ -19,36 +19,87 @@ public class ViewFacultyDatabase extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_faculty_database);
 
+        Bundle bundle = getIntent().getExtras();
+        int mode = bundle.getInt("keyOfMode");
         List<String> faculties = new ArrayList<>();
         String faculty;
-        Cursor ret = facultyDBHandler.viewAllFaculty();
-        ret.moveToFirst();
-        while(!ret.isAfterLast())
+
+
+        if (mode==1)
         {
-            faculty="";
-            /*if (ret.getString(ret.getColumnIndex("faculty_name")) != null) {
-                faculty += ret.getString(ret.getColumnIndex("faculty_id"));
-                faculty += " ";
-                faculty += ret.getString(ret.getColumnIndex("faculty_name"));
-                faculty += " ";
-                faculty += ret.getString(ret.getColumnIndex("faculty_password"));
-            }*/
+            Cursor ret = facultyDBHandler.viewAllFaculty();
+            ret.moveToFirst();
 
-            if (ret.getString(ret.getColumnIndex("_id")) != null) {
-                faculty += ret.getString(ret.getColumnIndex("_id"));
-                faculty += " ";
-                faculty += ret.getString(ret.getColumnIndex("course_name"));
-                faculty += " ";
-                faculty += ret.getString(ret.getColumnIndex("faculty_id"));
+            while(!ret.isAfterLast())
+            {
+                faculty="";
+
+                if (ret.getString(ret.getColumnIndex("faculty_id")) != null) {
+                    faculty += ret.getString(ret.getColumnIndex("faculty_id"));
+                    faculty += " ";
+                    faculty += ret.getString(ret.getColumnIndex("faculty_name"));
+                    faculty += " ";
+                    faculty += ret.getString(ret.getColumnIndex("faculty_password"));
+                }
+
+
+                faculties.add(faculty);
+                ret.moveToNext();
             }
-
-            faculties.add(faculty);
-            ret.moveToNext();
         }
-        ret.close();
+
+        else if (mode==2)
+        {
+            Cursor ret = facultyDBHandler.viewAllCourse();
+            ret.moveToFirst();
+
+            while(!ret.isAfterLast())
+            {
+                faculty="";
+
+                if (ret.getString(ret.getColumnIndex("_id")) != null) {
+                    faculty += ret.getString(ret.getColumnIndex("_id"));
+                    faculty += " ";
+                    faculty += ret.getString(ret.getColumnIndex("course_name"));
+                    faculty += " ";
+                    faculty += ret.getString(ret.getColumnIndex("faculty_id"));
+                }
+
+
+                faculties.add(faculty);
+                ret.moveToNext();
+            }
+        }
+        else if (mode == 3)
+        {
+            Cursor ret = facultyDBHandler.viewAttendanceDatabase();
+            ret.moveToFirst();
+
+            while(!ret.isAfterLast())
+            {
+                faculty="";
+
+                    if (ret.getString(ret.getColumnIndex("_id")) != null) {
+                        faculty += ret.getString(ret.getColumnIndex("_id"));
+                        faculty += " ";
+                        faculty += ret.getString(ret.getColumnIndex("date"));
+                        faculty += " ";
+                        faculty += ret.getString(ret.getColumnIndex("student_id"));
+                        faculty += " ";
+                        faculty += ret.getString(ret.getColumnIndex("status"));
+                    }
+
+                    faculties.add(faculty);
+                    ret.moveToNext();
+                }
+                ret.close();
+        }
 
         ListAdapter myAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,faculties);
         ListView facultyListView = findViewById(R.id.facultyListView);
         facultyListView.setAdapter(myAdapter);
+
     }
+
+
 }

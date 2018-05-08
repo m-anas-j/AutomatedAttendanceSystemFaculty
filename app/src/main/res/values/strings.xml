@@ -27,6 +27,10 @@
     <string name="user_id_editText">Enter your user id</string>
     <string name="password_editText">Enter your password</string>
     <string name="courseId">Taking attendace for</string>
+    <string name="facultyDatabaseButton">Faculty Database</string>
+    <string name="courseDatabaseButton">Course Database</string>
+    <string name="attendanceDatabaseButton">Attendance Database</string>
+    <string name="deleteDatabasesButton">Burn them all</string>
     <string-array name="available_courses">
         <item>CSE 4501</item>
         <item>CSE 4503</item>
