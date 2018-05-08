@@ -35,8 +35,9 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
     private static final String ATTENDANCE_COLUMN_2_DATE = "date";
     private static final String ATTENDANCE_COLUMN_3_STUDENT_ID = "student_id";
     private static final String ATTENDANCE_COLUMN_4_STATUS= "status";
-    private static final String ATTENDANCE_COLUMN_5_TOTALCLASSES = "total_classes";
-    private static final String ATTENDANCE_COLUMN_6_PERCENTAGE = "percentage";
+    private static final String ATTENDANCE_COLUMN_6_TOTALCLASSES = "total_classes";
+    private static final String ATTENDANCE_COLUMN_7_PERCENTAGE = "percentage";
+    private static final String ATTENDANCE_COLUMN_5_DAYSPRESENT = "days_present";
     //Course info table
     private static final String TABLE_COURSEINFO = "course_info";
     private static final String COURSEINFO_COLUMN_1_ID = "_id";
@@ -79,12 +80,13 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
 
         //create attendance table
         String createAttendanceTable = "CREATE TABLE " + TABLE_ATTENDANCE + "( " +
-                ATTENDANCE_COLUMN_1_ID + " TEXT PRIMARY KEY, " +
+                ATTENDANCE_COLUMN_1_ID + " TEXT, " +
                 ATTENDANCE_COLUMN_2_DATE + " TEXT, " +
                 ATTENDANCE_COLUMN_3_STUDENT_ID + " TEXT, " +
-                ATTENDANCE_COLUMN_4_STATUS + " INTEGER, " +
-                ATTENDANCE_COLUMN_5_TOTALCLASSES + " INTEGER, " +
-                ATTENDANCE_COLUMN_6_PERCENTAGE + " NUMERIC )"
+                ATTENDANCE_COLUMN_4_STATUS + " NUMERIC, " +
+                ATTENDANCE_COLUMN_5_DAYSPRESENT + " NUMERIC, " +
+                ATTENDANCE_COLUMN_6_TOTALCLASSES + " NUMERIC, " +
+                ATTENDANCE_COLUMN_7_PERCENTAGE + " NUMERIC )"
                 ;
         db.execSQL(createAttendanceTable);
 
@@ -229,4 +231,35 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
         }
         return facultyPassword;
     }
+
+    public void addNewAttendanceEntry(String receivedCourseId, String receivedCurrentDate, String receivedStudentId)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        try
+        {
+            String createAttendanceTable = "CREATE TABLE " + TABLE_ATTENDANCE + "( " +
+                    ATTENDANCE_COLUMN_1_ID + " TEXT, " +
+                    ATTENDANCE_COLUMN_2_DATE + " TEXT, " +
+                    ATTENDANCE_COLUMN_3_STUDENT_ID + " TEXT, " +
+                    ATTENDANCE_COLUMN_4_STATUS + " NUMERIC, " +
+                    ATTENDANCE_COLUMN_5_DAYSPRESENT + " NUMERIC, " +
+                    ATTENDANCE_COLUMN_6_TOTALCLASSES + " NUMERIC, " +
+                    ATTENDANCE_COLUMN_7_PERCENTAGE + " NUMERIC )"
+                    ;
+            db.execSQL(createAttendanceTable);
+        }
+        catch (SQLException e)
+        {
+
+        }
+
+        ContentValues newAttendanceEntry = new ContentValues();
+        newAttendanceEntry.put(ATTENDANCE_COLUMN_1_ID, receivedCourseId);
+        newAttendanceEntry.put(ATTENDANCE_COLUMN_2_DATE, receivedCurrentDate);
+        newAttendanceEntry.put(ATTENDANCE_COLUMN_3_STUDENT_ID, receivedStudentId);
+        db.insert(TABLE_ATTENDANCE, null, newAttendanceEntry);
+
+    }
+    
+
 }

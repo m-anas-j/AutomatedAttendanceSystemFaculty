@@ -1,5 +1,6 @@
 package com.example.weisslogia.automatedattendancesystemfaculty;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -71,6 +72,7 @@ public class FacultyCourses extends AppCompatActivity {
             courseButton.setBackgroundResource(R.drawable.ripple_courses);
             LinearLayout.LayoutParams buttonParams = getButtonParams();
             linearLayout.addView(courseButton,buttonParams);
+            final Intent receivingStudentIdIntent = new Intent(this,ReceivingStudentIDActivity.class);
 
             //set button click listener
             courseButton.setOnClickListener(
@@ -80,6 +82,9 @@ public class FacultyCourses extends AppCompatActivity {
                         public void onClick(View view)
                         {
                             Toast.makeText(FacultyCourses.this, courseButton.getText().toString() + " selected", Toast.LENGTH_SHORT).show();
+                            receivingStudentIdIntent.putExtra("keyOfCourseId",courseButton.getText().toString());
+                            receivingStudentIdIntent.putExtra("keyOfCurrentDate",currentDate.getText().toString());
+                            startActivity(receivingStudentIdIntent);
                         }
                     }
 

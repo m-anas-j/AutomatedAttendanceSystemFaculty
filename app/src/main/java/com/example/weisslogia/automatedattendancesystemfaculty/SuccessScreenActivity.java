@@ -16,7 +16,7 @@ public class SuccessScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_success_screen);
 
         Bundle receivedData = getIntent().getExtras();
-        receivedID = receivedData.getString("receivedData");
+        receivedID = receivedData.getString("keyOfReceivedData");
         Toast.makeText(this,"Attendance taken for student id "+receivedID,Toast.LENGTH_LONG).show();
 
         statusText=findViewById(R.id.statusText);

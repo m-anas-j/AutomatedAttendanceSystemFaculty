@@ -8,13 +8,24 @@ import android.os.Parcelable;
 //packages needed for receiving data via nfc
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
+import android.widget.TextView;
 
 public class ReceivingStudentIDActivity extends AppCompatActivity {
+
+    TextView courseId;
+    String receivedCourseId;
+    String receivedCurrentDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receiving_student_id);
+
+        Bundle dataFromLoggedInFaculty = getIntent().getExtras();
+        receivedCourseId = dataFromLoggedInFaculty.getString("keyOfCourseId");
+        receivedCurrentDate = dataFromLoggedInFaculty.getString("keyOfCurrentDate");
+        courseId = findViewById(R.id.courseId);
+        courseId.setText(courseId.getText().toString() + " " + receivedCourseId);
     }
 
     @Override
@@ -28,9 +39,11 @@ public class ReceivingStudentIDActivity extends AppCompatActivity {
             NdefMessage message = (NdefMessage) rawMessages[0]; // only one message transferred
             String receivedID = "";
             receivedID = receivedID + new String(message.getRecords()[0].getPayload()) + " ";
-            Intent i2 = new Intent(this, SuccessScreenActivity.class);
-            i2.putExtra("receivedData",receivedID);
-            startActivity(i2);
+            Intent successScreenActivityIntent = new Intent(this, SuccessScreenActivity.class);
+            successScreenActivityIntent.putExtra("keyOfReceivedData",receivedID);
+            successScreenActivityIntent.putExtra("keyOfReceivedCourseId",receivedCourseId);
+            successScreenActivityIntent.putExtra("keyOfReceivedCurrentData",receivedCurrentDate);
+            startActivity(successScreenActivityIntent);
             /*TextView reminder = (TextView)findViewById(R.id.reminder);
             reminder.setText(receivedID);*/
 
