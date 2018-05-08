@@ -1,5 +1,6 @@
 package com.example.weisslogia.automatedattendancesystemfaculty;
 
+import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -157,7 +158,7 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
     {
         SQLiteDatabase db = getWritableDatabase();
 
-        if (createdCourseInfoTable==false)
+        /*if (createdCourseInfoTable==false)
         {
             String createCourseInfoTable = "CREATE TABLE " + TABLE_COURSEINFO + "( " +
                     COURSEINFO_COLUMN_1_ID + " TEXT PRIMARY KEY, " +
@@ -166,6 +167,19 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
                     ;
             db.execSQL(createCourseInfoTable);
             createdCourseInfoTable=true;
+        }*/
+        try
+        {
+            String createCourseInfoTable = "CREATE TABLE " + TABLE_COURSEINFO + "( " +
+                    COURSEINFO_COLUMN_1_ID + " TEXT PRIMARY KEY, " +
+                    COURSEINFO_COLUMN_2_NAME + " TEXT, " +
+                    COURSEINFO_COLUMN_3_FACULTY_ID + " NUMERIC )"
+                    ;
+            db.execSQL(createCourseInfoTable);
+            createdCourseInfoTable=true;
+        }catch (SQLException e)
+        {
+
         }
 
         for (int i=0; i<coursesSelected.size(); i++)
@@ -185,7 +199,14 @@ public class FacultyDBHandler extends SQLiteOpenHelper{
 
     }
 
-    
+    public Cursor getFacultysCourses(int loggedInFacultyId)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT " + COURSEINFO_COLUMN_1_ID + " FROM " + TABLE_COURSEINFO + " WHERE " + COURSEINFO_COLUMN_3_FACULTY_ID + " IS " + loggedInFacultyId;
+        Cursor ret = db.rawQuery(query,null);
+        ret.moveToFirst();
+        return ret;
+    }
 
 
     public String searchPassword(String username) {

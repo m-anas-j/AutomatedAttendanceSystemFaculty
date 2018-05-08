@@ -47,7 +47,8 @@ public class WelcomeScreenActivity extends AppCompatActivity {
         String password = facultyDBHandler.searchPassword(facultyId);
 
         if(facultyPassword.equals(password)) {
-            Intent facultyLoginIntent = new Intent(this, Courses.class);
+            Intent facultyLoginIntent = new Intent(this, FacultyCourses.class);
+            facultyLoginIntent.putExtra("keyOfFacultyId",facultyId);
             startActivity(facultyLoginIntent);
         }
         else {
