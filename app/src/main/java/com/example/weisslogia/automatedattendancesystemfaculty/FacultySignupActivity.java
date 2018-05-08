@@ -7,9 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class FacultySignupActivity extends AppCompatActivity {
 
@@ -57,11 +61,12 @@ public class FacultySignupActivity extends AppCompatActivity {
 
     public void coursesButtonClicked(View view)
     {
-        String [] listItems;
+        final String [] listItems;
         boolean [] checkedItems;
         final ArrayList<Integer> userItems = new ArrayList<>();
-        AlertDialog.Builder coursesAlertDialog = new AlertDialog.Builder(this);
+        AlertDialog.Builder coursesAlertDialog = new AlertDialog.Builder(FacultySignupActivity.this);
         coursesAlertDialog.setTitle("Courses available");
+        final TextView testText = findViewById(R.id.testText);
 
         listItems = getResources().getStringArray(R.array.available_courses);
         checkedItems = new boolean[listItems.length];
@@ -74,13 +79,39 @@ public class FacultySignupActivity extends AppCompatActivity {
                     {
                         userItems.add(which);
                     }
-                    else
+                    else if (userItems.contains(which))
                     {
                         userItems.remove(which);
                     }
                 }
+
             }
         });
+
+        coursesAlertDialog.setCancelable(false);
+        coursesAlertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String course = "";
+                ArrayList<String> coursesSelected = new ArrayList<>();
+                for (int i=0;i<userItems.size();i++)
+                {
+                    course = listItems[userItems.get(i)];
+                    coursesSelected.add(course);
+                }
+                testText.setText(course);
+            }
+        });
+
+        coursesAlertDialog.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog mDialog = coursesAlertDialog.create();
+        mDialog.show();
 
     }
 
